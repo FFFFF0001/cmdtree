@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    如何在自己网站中使用Fontawesome的图标 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">如何在自己网站中使用Fontawesome的图标</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-04-30T00:00:00+00:00" itemprop="datePublished">2017年4月30日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">使用笔记</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <p>Font Awesome, 是一款非常流行的图标字体库和CSS框架，最新版本Font Awesome 4.7。</p>
+<p>此项目也开源在Github <a href="https://github.com/FortAwesome/Font-Awesome">Font-Awesome</a></p>
+<p>现在我们讲讲如何在自己的网站中引用Font-Awesome的图标.</p>
+<p>一、首先上<a href="http://fontawesome.io/">Font-Awesome</a>的官方网站下载的代码压缩包，也可以使用各大CDN加速站的链接。</p>
+<p>二、下载好文件后解压缩,里面的文件放在网站源码中。</p>
+<p>三、在<code>&lt;head&gt;</code>中引用刚才下载的Fontawesome压缩包里的css文件夹中的font-awesome.min.css文件，或者例如下面的BootCDN的资源链接：</p>
+<pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span>&gt;</span>
+</code></pre>
+<p>四、在font-awesome的官网可以查找到是否有你所想要的图标,使用<code>&lt;i&gt;&lt;/i&gt;</code>标签引用图标即可.</p>
+<p>补充一下如果图标太小如何在改变图标尺寸</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fa fa-address-book"</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+</code></pre>
+<p>譬如这个图标太小了,我们在其class的末尾加上fa-2x就会放大两倍,2,3.4倍亦是如此</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"fa fa-address-book fa-2x"</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">"true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+</code></pre>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

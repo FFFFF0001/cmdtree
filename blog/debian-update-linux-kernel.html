@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    Debian stable使用backports源升级新内核 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">Debian stable使用backports源升级新内核</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-10-10T00:00:00+00:00" itemprop="datePublished">2017年10月10日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">Unix/Linux</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <blockquote>
+<p>为什么要升级内核？我的笔记本电脑CPU较新，估计是7代CPUSoC的电影管理模块状态有变化，导致我在待机下的cpu功耗也能达到5-6瓦，我升级完内核后稳定在2瓦左右，虽然这也高出一般电脑，但也已经好很多了。如果没有必须要升级内核的需求，不建议使用stable单独升级内核。</p>
+</blockquote>
+<blockquote>
+<p>从squeeze开始，Debian Backports 已并入主源，所以就不需要添加新的源了。</p>
+</blockquote>
+<p>这里我使用的是中科大的源，所以我只要加上以下两列源即可：</p>
+<pre><code class="hljs">deb http://mirrors.ustc.edu.cn/debian/ stretch-backports main contrib non-free
+deb-src http://mirrors.ustc.edu.cn/debian/ stretch-backports main contrib non-free
+</code></pre>
+<p>然后更新以下缓存</p>
+<pre><code class="hljs">$ sudo apt-get update
+</code></pre>
+<p>现在就可以使用backports源了，命令是：</p>
+<pre><code class="hljs">$ sudo apt-get -t stretch-backports install &quot;package&quot;
+</code></pre>
+<p>比如执行一下sudo apt-get -t stretch-backports upgrade看到是有包可以更新的，但是sudo apt-get upgrade却没有。</p>
+<p>安装新的内核</p>
+<p>直接执行以下命令就可以安装当前backports的最新内核：</p>
+<pre><code class="hljs">$ sudo apt-get -t stretch-backports install linux-image-amd64
+</code></pre>
+<p>我现在使用的Debian 9（stretch），默认的是linux 4.9 ，我这里安装的是4.12</p>
+<p>重启后使用uname -r就可以查看到已经安装好新的内核</p>
+<p>然后执行</p>
+<pre><code class="hljs">$ sudo apt autoremove
+</code></pre>
+<p>就可以删除旧的内核噢。</p>
+<p>查看安装的内核</p>
+<pre><code class="hljs">$ dpkg --list | grep linux-image
+</code></pre>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    xampp 不能启动报错 Error:Apache shutdown unexpectedly - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">xampp 不能启动报错 Error:Apache shutdown unexpectedly</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-06-21T00:00:00+00:00" itemprop="datePublished">2017年6月21日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">使用笔记</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <p>刚才试着在电脑上安装xampp，搭建wordpress本地环境</p>
+<p>启动apache和mysql时却报错，大部分情况就是端口被占用了，或者是被关闭了</p>
+<p>就像前段时间流行的比特病毒，我把443端口关闭了，同时80端口被虚拟机占用了 ，所以修改xampp的端口改一下就行了</p>
+<p>修改443端口文件在c:/xampp/apache/conf/extra/httpd-ssl.conf</p>
+<p>修改80端口文件在c:/xampp/apache/conf/httpd.conf</p>
+<p>查找要修改的端口然后随便写个端口就好了</p>
+<p><strong>注：修改80端口带来的问题就是直接访问127.0.0.1了，需要在后面加上:你修改的端口号</strong></p>
+<p>（完）</p>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

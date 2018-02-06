@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    AngularJS入门学习（三）控制器 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">AngularJS入门学习（三）控制器</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-07-14T00:00:00+00:00" itemprop="datePublished">2017年7月14日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <p>controller是MVC（Model View Controller）框架中的一部分，(官方翻译)ngController指令是一个试图控制类，这是一个关键在angular如何支持模型视图控制器设计模式原则方面。Angular的控制器：ngController实际上是一个函数，指定一个Controller类，这个类控制业务逻辑和模型的在视图的绑定。</p>
+<p>我们来看一段代码：</p>
+<pre><code class="hljs html">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"myapp"</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"myCtrl"</span>&gt;</span>
+    输入的姓名:<span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+    名：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"firstname"</span>/&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+    姓：<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"lastname"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>hello {{ firstname +" "+ lastname }}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+    <span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">"myapp"</span> ,[]);
+    app.controller(<span class="hljs-string">'myCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($scope)</span> </span>{
+      $scope.firstname = <span class="hljs-string">"John"</span>;
+      $scope.lastname =  <span class="hljs-string">"Doe"</span>;
+    });
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>上面是一个最简单的使用ng-controller的实例</p>
+<p><code>ng-controller=&quot;myCtrl&quot;</code> 属性是一个 AngularJS 指令。用于定义一个控制器。</p>
+<p>myCtrl 函数是一个 JavaScript 函数。</p>
+<p>AngularJS 使用$scope 对象来调用控制器。</p>
+<p>控制器的 $scope （相当于作用域、控制范围）用来保存AngularJS Model(模型)的对象。</p>
+<p>控制器在作用域中创建了两个属性 (firstName 和 lastName)。</p>
+<p>ng-model 指令绑定输入域到控制器的属性（firstName 和 lastName）。</p>
+<h3>控制器也可以有方法</h3>
+<p>我们将上面的例子改变一下:</p>
+<pre><code class="hljs html">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"myapp"</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"personCtrl"</span>&gt;</span>
+    输入的姓名: <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+    名：
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"firstname"</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span> 姓：
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">ng-model</span>=<span class="hljs-string">"lastname"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span> 这里使用函数的方式输出的姓名
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>hello {{ fullname() }}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+    <span class="hljs-keyword">var</span> app = angular.module(<span class="hljs-string">"myapp"</span>, []);
+    app.controller(<span class="hljs-string">'personCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($scope)</span> </span>{
+      $scope.firstname = <span class="hljs-string">"John"</span>;
+      $scope.lastname = <span class="hljs-string">"Doe"</span>;
+      $scope.fullname = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> $scope.firstname + <span class="hljs-string">" "</span> + $scope.lastname;
+      }
+    });
+  </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>这里我们使用调用函数的方式来输出姓名，将<code>$scope.fullname</code>绑定到HTML，这样修改<code>input</code>中的内容时，就可以看到全名被自动更新了。</p>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

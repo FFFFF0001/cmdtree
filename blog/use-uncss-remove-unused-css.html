@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    使用Uncss去除未使用的CSS样式 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">使用Uncss去除未使用的CSS样式</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-12-28T00:00:00+00:00" itemprop="datePublished">2017年12月28日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">学习笔记</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <p><a href="https://github.com/giakki/uncss">Uncss</a>是一个可以去除在HTML页面中没有使用过的CSS样式的工具。</p>
+<h2>使用方法</h2>
+<h3>安装使用</h3>
+<p>你可以使用NPM安装uncss来在本地中使用：</p>
+<pre><code class="hljs">npm install -g uncss
+</code></pre>
+<p>最简单的一个例子就是使用<code>uncss</code>命令：</p>
+<pre><code class="hljs">uncss [options] &lt;file or URL, ...&gt;
+</code></pre>
+<p>例如</p>
+<pre><code class="hljs">uncss https://fanzhiyang.com &gt; style.css
+</code></pre>
+<p>这个命令会把我博客主页中所有引用的CSS都进行一次过滤，然后生成仅使用到的样式的CSS文件。</p>
+<p>还可以添加的参数有：</p>
+<pre><code class="hljs">-V, --version                       output the version number
+-i, --ignore &lt;selector, ...&gt;        Do not remove given selectors
+-m, --media &lt;media_query, ...&gt;      Process additional media queries
+-C, --csspath &lt;path&gt;                Relative path where the CSS files are located
+-s, --stylesheets &lt;file, ...&gt;       Specify additional stylesheets to process
+-S, --ignoreSheets &lt;selector, ...&gt;  Do not include specified stylesheets
+-r, --raw &lt;string&gt;                  Pass in a raw string of CSS
+-t, --timeout &lt;milliseconds&gt;        Wait for JS evaluation
+-H, --htmlroot &lt;folder&gt;             Absolute paths' root location
+-u, --uncssrc &lt;file&gt;                Load these options from &lt;file&gt;
+-n, --noBanner                      Disable banner
+-a, --userAgent &lt;string&gt;            Use a custom useragent string
+-h, --help                          output usage information
+</code></pre>
+<h3>在项目中使用</h3>
+<p>你可以在Node.js项目中使用uncss，例如在Gulp中使用，你需要安装<code>gulp-uncss</code>插件，然后编辑<code>gulpfile.js</code>文件</p>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>),
+      uncss = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-uncss'</span>);
+gulp.task(<span class="hljs-string">'default'</span>, () =&gt; {
+  gulp.src(<span class="hljs-string">'oldstyle.css'</span>)
+    .pipe(uncss({
+      <span class="hljs-attr">html</span>: [<span class="hljs-string">'index.html'</span>, <span class="hljs-string">'posts/**/*.html'</span>, <span class="hljs-string">'http://example.com'</span>]
+    }))
+    .pipe(gulp.dest(<span class="hljs-string">'output/'</span>));
+});
+</code></pre>
+<p>然后执行<code>gulp</code>命令即可。</p>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

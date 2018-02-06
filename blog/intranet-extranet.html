@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    内网和外网的区别 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">内网和外网的区别</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-05-21T00:00:00+00:00" itemprop="datePublished">2017年5月21日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">网络技术与安全</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <h1>什么是内网</h1>
+<p>其实很多时候我们的电脑不是直接连到Internet（外网）的。因为在国际互联网上IP地址是不允许的重复的，而内网则是一定范围内的局域网，企业网、校园网、家庭网等。局域网可以只是内部使用，那么就不需要与外网连接；也可以有一个互联网出口，这样局域网就可以访问公网。这中间用到了NAT这种很大程度上延缓IPv4地址空间不足的技术，简单的说就是通过地址转换的方式让内网的IP在访问公网是在使用外网地址一样，NAT的设备记录了内外网的转换关系，使得很多台电脑都可以共享一个外网出口。</p>
+<p>下图可以看到有路由器（第一层），交换机（第二层）然后是自己的电脑。</p>
+<p><img src="/pics/2017/05/2101.jpg" alt=""></p>
+<p>内网就是从路由器一下开始的，而且IP都是以192开头的IP。从图片可以看到电脑是经过交换机，路由器之后才连到外网的。为什么要这样呢？其实外网IP是比较紧张的，现在的电脑的普及使得外网IP根本不够用的。内网的产生就是为了解决这个难题的！</p>
+<p><img src="/pics/2017/05/2102.jpg" alt=""></p>
+<p>上图，路由器只需一个外网IP就可以供下面的N多电脑联网。因为不同的内网IP是可以重复使用。拿网吧举例，一个网吧N多台电脑，其实他只要一个外网IP就可以给下面的电脑提供上网。内网IP有一下类型：</p>
+<pre><code class="hljs">10.0.0.0~10.255.255.255
+
+172.16.0.0~172.31.255.255
+
+192.168.0.0~192.168.255.255
+</code></pre>
+<h1>外网</h1>
+<p>外网也称广域网，通常跨接很大的物理范围。外网就是不经路由器或交换机就可以上网的网络，可以直接被外界所访问到。无需经如何设备，直接连接电脑。因特网（Internet，也称互联网）是最大的广域网，粗略的来说就是全球网络的集合。前面说到因为Ipv4地址空间不足，一般的人都不能拥有外网IP，因为一个人用外网IP简直是太浪费了。所以我们都是通过内网去上网的。而一般我们购买了服务器之后，都会附带买一个公网带宽，这个带宽就有一个唯一的公网IP。</p>
+<p><img src="/pics/2017/05/2103.jpg" alt=""></p>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

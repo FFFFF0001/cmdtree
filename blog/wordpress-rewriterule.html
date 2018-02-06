@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    WordPress 伪静态规则（IIS/Apache/Nginx） - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">WordPress 伪静态规则（IIS/Apache/Nginx）</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-08-05T00:00:00+00:00" itemprop="datePublished">2017年8月5日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">使用笔记</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <p>不少朋友总是询问 WordPress 如何添加伪静态规则，今天倡萌就总结一下 IIS/Apache/Nginx 三种环境下的伪静态规则，希望对大家有所帮助。</p>
+<p>检测主机是否支持伪静态的方法：在WP后台 &gt; 设置 &gt; 固定链接，设置为 非默认带?的那种结构，然后访问任何一篇文章，如果出现 404 错误，说明你的主机当前不支持 WordPress 伪静态。</p>
+<h1>IIS伪静态规则</h1>
+<p>IIS 环境是 Windows 主机常用的服务器环境，新建一个 txt 文件，将下面的代码添加到文件中：</p>
+<pre><code class="hljs">[ISAPI_Rewrite]
+# Defend your computer from some worm attacks
+#RewriteRule .*(?:global.asa|default\.ida|root\.exe|\.\.).* . [F,I,O]
+# 3600 = 1 hour
+
+CacheClockRate 3600
+RepeatLimit 32
+ 
+# Protect httpd.ini and httpd.parse.errors files
+# from accessing through HTTP
+# Rules to ensure that normal content gets through
+
+RewriteRule /tag/(.*) /index\.php\?tag=$1
+RewriteRule /software-files/(.*) /software-files/$1 [L]
+RewriteRule /images/(.*) /images/$1 [L]
+RewriteRule /sitemap.xml /sitemap.xml [L]
+RewriteRule /favicon.ico /favicon.ico [L]
+# For file-based wordpress content (i.e. theme), admin, etc.
+RewriteRule /wp-(.*) /wp-$1 [L]
+# For normal wordpress content, via index.php
+RewriteRule ^/$ /index.php [L]
+RewriteRule /(.*) /index.php/$1 [L]
+</code></pre>
+<p>然后另存为 httpd.ini 文件，上传到WordPress站点的根目录即可。</p>
+<h1>Apache伪静态规则</h1>
+<p>Apache是 Linux 主机下常见的环境，现在一般的 Linux 虚拟主机都采用这种环境。新建一个 htaccess.txt 文件，添加下面的代码：</p>
+<pre><code class="hljs apache"><span class="hljs-section">&lt;IfModule mod_rewrite.c&gt;</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteEngine</span></span> <span class="hljs-literal">On</span>
+<span class="hljs-attribute">RewriteBase</span> /
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteRule</span></span> ^index\.php$ -<span class="hljs-meta"> [L]</span>
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{REQUEST_FILENAME}</span> !-f
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteCond</span></span> <span class="hljs-variable">%{REQUEST_FILENAME}</span> !-d
+<span class="hljs-attribute"><span class="hljs-nomarkup">RewriteRule</span></span> . /index.php<span class="hljs-meta"> [L]</span>
+<span class="hljs-section">&lt;/IfModule&gt;</span>
+
+</code></pre>
+<p>然后上传到 WordPress 站点的根目录，重命名为 .htaccess 即可</p>
+<h1>Nginx伪静态规则</h1>
+<p>Nginx环境一般是Linux 主机 VPS或服务器用户用的比较多，这些用户一般都会自己配置Nginx，或者有专门的人帮你配置，打开 nginx.conf 或者某个站点的配置环境，比如 wpdaxue.com.conf（不同人配置的不一样），在  server   { } 大括号里面添加下面的代码：</p>
+<pre><code class="hljs nginx"><span class="hljs-attribute">location</span> / {
+<span class="hljs-attribute">if</span> (-f <span class="hljs-variable">$request_filename</span>/index.html){
+                <span class="hljs-attribute">rewrite</span> (.*) <span class="hljs-variable">$1</span>/index.html <span class="hljs-literal">break</span>;
+        }
+<span class="hljs-attribute">if</span> (-f <span class="hljs-variable">$request_filename</span>/index.php){
+                <span class="hljs-attribute">rewrite</span> (.*) <span class="hljs-variable">$1</span>/index.php;
+        }
+<span class="hljs-attribute">if</span> (!-f <span class="hljs-variable">$request_filename</span>){
+                <span class="hljs-attribute">rewrite</span> (.*) /index.php;
+        }
+}
+
+</code></pre>
+<p>保存，重启 Nginx 即可。</p>
+<p>题外话：倡萌一直不推荐在 windows 的IIS服务器下安装 WordPress，因为 IIS 环境运行php程序的效率，相对同等配置下 Linux 的 Apache 和 Nginx 环境，要低的多，具体可以看看https://www.wpdaxue.com/wordpress-hosting.html</p>
+<blockquote>
+<p>转载于https://www.wpdaxue.com/wordpress-rewriterule.html</p>
+</blockquote>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

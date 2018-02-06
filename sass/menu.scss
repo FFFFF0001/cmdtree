@@ -1,0 +1,123 @@
+.menu-link {
+  // 响应式菜单按钮
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  background: #000;
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 10px;
+  z-index: 10;
+  width: 2em;
+  height: auto;
+  padding: 2.1em 1.6em;
+  &:hover,
+  &:focus {
+    background: #000;
+  }
+  span {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 0.2em;
+    &:before,
+    &:after {
+      background-color: #fff;
+      width: 100%;
+      height: 0.2em;
+    }
+    &:before {
+      position: absolute;
+      margin-top: -0.6em;
+      content: " ";
+    }
+    &:after {
+      position: absolute;
+      margin-top: -0.6em;
+      content: " ";
+      margin-top: 0.6em;
+    }
+  }
+}
+
+@media (min-width: 58em) {
+  #menu {
+    left: 150px !important;
+  }
+}
+
+#menu {
+  margin-left: -150px;
+  width: 150px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: #191818;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  .pure-menu-header {
+    background: #1f8dd6;
+    font-size: 110%;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    font-size: 110%;
+    color: #fff;
+    margin: 0;
+    padding: .5em 1em;
+  }
+  .pure-menu {
+    ul.pure-menu-list {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      font-size: 0.9em;
+      .pure-menu-item {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        a.pure-menu-link {
+          position: relative;
+          list-style: none;
+          margin: 0;
+          color: #999;
+          padding: 0.45em;
+          &:focus,
+          &:hover {
+            background-color: #333;
+          }
+          i {
+            margin-right: 0.2em;
+          }
+        }
+      }
+    }
+    .category-list {
+      border-top: 1px solid #333;
+    }
+  }
+  .menu-footer {
+    border-top: 1px solid #333;
+  }
+}
+
+// extra
+
+.pure-menu-header,
+.pure-menu-link {
+  display: block;
+  white-space: nowrap;
+}
+
+.small-print {
+  font-size: 0.8em;
+  margin: 0.6em;
+}

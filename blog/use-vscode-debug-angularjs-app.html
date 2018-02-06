@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    使用VScode调试Angularjs应用 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">使用VScode调试Angularjs应用</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-11-15T00:00:00+00:00" itemprop="datePublished">2017年11月15日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <p>VSCode 在1.14更新后添加了调试Angularjs应用的功能。</p>
+<h1>一、环境要求</h1>
+<ul>
+<li>在VScode中安装插件<code>Debugger for Chrome</code></li>
+<li>确保Chrome安装在默认位置</li>
+<li>项目要求使用Angular Cli创建</li>
+<li>在项目中安装好必要依赖</li>
+</ul>
+<h1>二、配置launche.json</h1>
+<p><img src="/pics/2017/11/1501.png" alt=""></p>
+<p>安照上面的顺序打开launche.json文件，将这个文件的所有内容替换为下面内容</p>
+<pre><code class="hljs json">{
+    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.2.0"</span>,
+    <span class="hljs-attr">"configurations"</span>: [
+        {
+            <span class="hljs-attr">"type"</span>: <span class="hljs-string">"chrome"</span>,
+            <span class="hljs-attr">"request"</span>: <span class="hljs-string">"launch"</span>,
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Chrome"</span>,
+            <span class="hljs-attr">"url"</span>: <span class="hljs-string">"http://localhost:4200"</span>,
+            <span class="hljs-attr">"webRoot"</span>: <span class="hljs-string">"${workspaceRoot}"</span>
+        }
+    ]
+}
+</code></pre>
+<h1>三、开始Debug</h1>
+<p>这个演示的项目在https://gitee.com/mumu-osc/NiceFish。</p>
+<p>我在app.component.ts里的构造函数里面打个断点，像这样</p>
+<p><img src="/pics/2017/11/1502.png" alt=""></p>
+<p>VScode本身自带有终端模拟器，使用Ctrl+`调出，你也可以使用其它终端。</p>
+<p>输入<code>ng serve</code>启动项目。</p>
+<p><img src="/pics/2017/11/1503.png" alt=""></p>
+<p>然后从VS Code的debug界面启动Chrome：</p>
+<p><img src="/pics/2017/11/1504.png" alt=""></p>
+<p>接着会打开Chrome，或者你手动进入到<code>localhost:4200</code>，你一定会什么都没有看到，该是什么样子还是什么样子，<strong>你需要刷新一下页面才能看到断点</strong>。</p>
+<p><img src="/pics/2017/11/1505.png" alt=""></p>
+<p>如果你使用那个项目并设置跟我一样的断点就可以看到这样了。VScode的上面还有一个控制台，当点击那个绿三角时就会继续运行代码了。</p>
+<p>国内大多数企业并不做单元测试，我就先不写了吧，如果你想对单元测试代码进行Debug，请参考英文原版https://github.com/weinand/vscode-recipes/tree/master/Angular-CLI ，最后一小节Debug Unit Tests。</p>
+<blockquote>
+<p>根据文章<a href="https://damoqiongqiu.github.io/1-web/2017/07/12/debug-angular-inside-vscode.html">VS Code 1.14发布，可以直接Debug Angular应用</a>修改</p>
+</blockquote>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

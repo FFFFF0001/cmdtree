@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    jekyll 的一些函数和技巧 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">jekyll 的一些函数和技巧</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2017-06-02T00:00:00+00:00" itemprop="datePublished">2017年6月2日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">使用笔记</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <h2>Jekyll常用标签</h2>
+<h4>日期</h4>
+<pre><code class="hljs">{{ page.date | date: &quot;%Y-%m-%d&quot; }}
+</code></pre>
+<p>输出结果为</p>
+<p>2017-06-02</p>
+<h4>循环输出 3 篇文章</h4>
+<pre><code class="hljs">
+{% for post in site.posts limit:3 %}
+{% endfor %}
+ 
+</code></pre>
+<h4>循环输出最近 3 篇</h4>
+<pre><code class="hljs">{% for post in site.posts offset:3 limit:3 %}
+{% endfor %}
+</code></pre>
+<h4>分页输出</h4>
+<pre><code class="hljs">{% for post in paginator.posts %}
+  {{ content }}
+{% endfor %}
+
+</code></pre>
+<h4>分页</h4>
+<pre><code class="hljs ruby"><span class="hljs-keyword">if</span> paginator.previous_page
+  /<span class="hljs-regexp">/ 判断输出前一个分页
+  /</span><span class="hljs-regexp">/ "page" + paginator.previous_page
+endif
+if paginator.next_page
+  /</span><span class="hljs-regexp">/ 判断输出后一个分页
+  /</span><span class="hljs-regexp">/ "page" + paginator.next_page
+endif
+for page in (1..paginator.total_pages)
+  if page == paginator.page
+     /</span><span class="hljs-regexp">/ 如果是当前分页
+     /</span><span class="hljs-regexp">/ page
+  else
+     /</span><span class="hljs-regexp">/ 不是的话输出其他分页链接号码
+     /</span><span class="hljs-regexp">/ "page" + page
+  endif
+endfor
+</span></code></pre>
+<h4>文章页面显示前一篇文章和后一篇文章</h4>
+<pre><code class="hljs ruby"><span class="hljs-keyword">if</span> page.previous
+  /<span class="hljs-regexp">/ url:    page.previous.url
+  /</span><span class="hljs-regexp">/ title:  page.previous.title | truncatewords:5
+endif
+if page.next
+  /</span><span class="hljs-regexp">/ url:    page.next.url
+  /</span><span class="hljs-regexp">/ title:  page.next.url | truncatewords:5
+</span></code></pre>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>

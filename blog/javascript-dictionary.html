@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    
+    JavaScript数据结构与算法——字典 - 樊志阳的博客
+    
+  </title>
+
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+<div id="layout">
+  <a href="#menu" id="menuLink" class="menu-link">
+  <span></span>
+</a>
+<div id="menu">
+  <a class="pure-menu-header" href="http://fanzhiyang.com">樊志阳的博客</a>
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/">
+          <i class="fa fa-home fa-fw"></i>Home</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/about.html">
+          <i class="fa fa-user fa-fw"></i>About</a>
+      </li>
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="/contact.html">
+          <i class="fa fa-envelope fa-fw"></i>Contact</a>
+      </li>
+<!-- 
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/index.xml">
+          <i class="fa fa-rss fa-fw"></i>RSS</a>
+      </li> -->
+
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="https://github.com/rhatyang" target="_blank">
+          <i class="fa fa-github-square fa-fw"></i>GitHub</a>
+      </li>
+
+    </ul>
+
+    <ul class="pure-menu-list category-list">
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/network.html">网络技术与安全</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/use.html">使用笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/learn.html">学习笔记</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/history.html">历史爱好者</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/lifetime.html">晃眼一生</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/linux.html">Unix/Linux</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/javascript.html">JavaScript</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/other.html">杂文</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/review.html">观后感</a>
+      </li>
+      
+      <li class="pure-menu-item">
+        <a class="pure-menu-link" href="http://fanzhiyang.com/python.html">Python</a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="menu-footer">
+    <div class="small-print copyright">
+      <small>© 2018. All rights reserved.</small>
+    </div>
+    <div class="small-print powered">
+      Powered by Node.js. Open Source on
+      <a href="https://github.com/rhatyang/blog" target="_blank">Github</a>.
+    </div>
+  </div>
+
+</div>
+
+  
+
+<div id="main">
+
+  <article class="content page" itemscope itemtype="http://schema.org/Blogpageing">
+
+    <div class="page-header">
+      <h1 class="page-title">JavaScript数据结构与算法——字典</h1>
+      <div class="page-meta">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2018-01-10T00:00:00+00:00" itemprop="datePublished">2018年1月10日</time>
+        <i class="fa fa-archive"></i>
+        <span class="post-category">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="page-content" itemprop="articleBody">
+
+      <p><code>字典</code>是一种以键值对形式存在的数据格式，即<code>[key]: value</code>，在JS中可以很简单的使用<code>Object</code>类来实现字典。</p>
+<h2>实现一个字典</h2>
+<p>首先定义一个Dictionary类</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Dictionary</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+}
+</code></pre>
+<p>在Dictionary类中要使用数组来进行储存，这样一来，数组的索引即为<code>key</code>值。</p>
+<p>然后定义一些基本方法</p>
+<h4>添加键值</h4>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">key, value</span>) </span>{
+  <span class="hljs-keyword">this</span>.data[key] = value;
+}
+</code></pre>
+<h4>查询值</h4>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">find</span>(<span class="hljs-params">key</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[key];
+}
+</code></pre>
+<h4>删除值</h4>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">remove</span>(<span class="hljs-params">key</span>) </span>{
+  <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.data[key];
+}
+</code></pre>
+<h4>返回字典长度</h4>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">count</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> n = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>.data) {
+    ++n;
+  }
+  <span class="hljs-keyword">return</span>(n);
+}
+</code></pre>
+<h4>输出所有值</h4>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">returnAll</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> <span class="hljs-built_in">Object</span>.keys(<span class="hljs-keyword">this</span>.data)) {
+    <span class="hljs-keyword">return</span>(key + <span class="hljs-string">"："</span> + <span class="hljs-keyword">this</span>.data[key]);
+  }
+}
+</code></pre>
+<h4>对字典排序</h4>
+<p>可以使用原生的<code>sort()</code>对数组进行排序。</p>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">returnAll</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> <span class="hljs-built_in">Object</span>.keys(<span class="hljs-keyword">this</span>.data).sort()) {
+    <span class="hljs-keyword">return</span>(key + <span class="hljs-string">"："</span> + <span class="hljs-keyword">this</span>.data[key]);
+  }
+}
+</code></pre>
+<h4>清空所有值</h4>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clear</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>.data) {
+    <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.data[key];
+  }
+}
+</code></pre>
+<h2>完整代码</h2>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Dictionary</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
+  <span class="hljs-keyword">this</span>.add = add;
+  <span class="hljs-keyword">this</span>.find = find;
+  <span class="hljs-keyword">this</span>.remove = remove;
+  <span class="hljs-keyword">this</span>.count = count;
+  <span class="hljs-keyword">this</span>.returnAll = returnAll;
+  <span class="hljs-keyword">this</span>.clear = clear;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">key, value</span>) </span>{
+  <span class="hljs-keyword">this</span>.data[key] = value;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">find</span>(<span class="hljs-params">key</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.data[key];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">remove</span>(<span class="hljs-params">key</span>) </span>{
+  <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.data[key];
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">count</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> n = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>.data) {
+    ++n;
+  }
+  <span class="hljs-keyword">return</span>(n);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">returnAll</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>.data) {
+    alert(key + <span class="hljs-string">" :"</span> + <span class="hljs-keyword">this</span>.data[key]);
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clear</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>.data) {
+    <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.data[key];
+  }
+}
+</code></pre>
+
+
+    </div>
+
+  </article>
+</div>
+
+
+</div>
+
+<script src="/js/ui.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112754683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-112754683-1');
+</script>
+</body>
+</html>
